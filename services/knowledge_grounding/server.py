@@ -3,7 +3,7 @@ import time
 from typing import Optional, List
 
 import sentry_sdk
-from fastapi import Body, FastAPI
+from fastapi import FastAPI
 
 from config import *
 from schemas import *
