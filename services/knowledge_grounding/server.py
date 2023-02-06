@@ -17,13 +17,13 @@ class Answer(BaseModel):
 
 @app.post('/respond', response_model=Optional[List[Answer]])
 def respond(payload: dict = Body(...)):
-    batch = payload['batch']
+    batch, history = payload['batch'], payload["batch"][0]
     responses = None
     random.seed(42)
     st_time = time.time()
     if batch:
         user_inputs = {
-            "history": batch[0]["history"].split("\n") if batch[0]["history"] else [""],
+            "history": history["history"].split("\n") if history["history"] else [""],
             "inputs": [{
                 "checked_sentence": sample["checked_sentence"],
                 "knowledge": sample["knowledge"],

@@ -33,7 +33,12 @@ def test_knowledge_grounding(url: str, checked_sentence, knowledge, text, expect
 
     request_data = {
         "batch": [
-            {"checked_sentence": checked_sentence, "knowledge": knowledge, "text": text, "history": history},
+            {
+                "checked_sentence": checked_sentence,
+                "knowledge": knowledge,
+                "text": text,
+                "history": history
+             },
         ]
     }
     results = requests.post(url, json=request_data).text
