@@ -8,4 +8,3 @@ def pytest_addoption(parser):
 @pytest.fixture
 def url(request) -> str:
     return request.config.getoption('--url')
-

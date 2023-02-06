@@ -32,4 +32,4 @@ tar -xvzf /opt/conda/lib/python3.7/site-packages/data/models/*.tar.gz -C /opt/co
 rm /opt/conda/lib/python3.7/site-packages/data/models/*.tar.gz
 
 
-CMD gunicorn --workers=1 server:app -b 0.0.0.0:8083
+CMD uvicorn --workers=1 server:app --host=0.0.0.0 --port=8083 --reload

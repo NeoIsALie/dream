@@ -4,12 +4,12 @@ import os
 import sentry_sdk
 import torch
 from parlai.core.script import ParlaiPreloadModelScript
-from sentry_sdk.integrations.flask import FlaskIntegration
+from sentry_sdk.integrations.fastapi import FastApiIntegration
 
 logging.basicConfig(format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-sentry_sdk.init(dsn=os.getenv("SENTRY_DSN"), integrations=[FlaskIntegration()])
+sentry_sdk.init(dsn=os.getenv("SENTRY_DSN"), integrations=[FastApiIntegration()])
 
 cuda = torch.cuda.is_available()
 if cuda:
