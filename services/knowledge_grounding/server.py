@@ -18,7 +18,7 @@ def respond(payload: Question) -> Optional[List[Answer]]:
     st_time = time.time()
     if payload.batch:
         user_inputs = {
-            "history": payload.batch[0].get('history').split("\n") if payload.batch else [""],
+            "history": payload.batch[0].get("history").split("\n") if payload.batch else [""],
             "inputs": [
                 {
                     "checked_sentence": sample["checked_sentence"],
@@ -26,7 +26,7 @@ def respond(payload: Question) -> Optional[List[Answer]]:
                     "text": sample["text"],
                 }
                 for sample in payload.batch
-            ]
+            ],
         }
         try:
             raw_responses = kg_script.run(user_inputs)
