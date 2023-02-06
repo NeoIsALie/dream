@@ -31,5 +31,11 @@ wget $MODEL2_ARG -q -P /opt/conda/lib/python3.7/site-packages/data/models &&\
 tar -xvzf /opt/conda/lib/python3.7/site-packages/data/models/*.tar.gz -C /opt/conda/lib/python3.7/site-packages/data/models &&\
 rm /opt/conda/lib/python3.7/site-packages/data/models/*.tar.gz
 
+RUN wget $DATA_ARG -q -P /opt/conda/lib/python3.7/site-packages/data &&\
+    wget $MODEL1_ARG -q -P /opt/conda/lib/python3.7/site-packages/data/models &&\
+    wget $MODEL2_ARG -q -P /opt/conda/lib/python3.7/site-packages/data/models &&\
+    tar -xvzf
+
+
 
 CMD uvicorn --workers=1 server:app --host=0.0.0.0 --port=8083 --reload
