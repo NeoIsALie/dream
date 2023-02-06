@@ -38,8 +38,8 @@ def test_knowledge_grounding(url: str, checked_sentence, knowledge, text, expect
                 "knowledge": knowledge,
                 "text": text,
                 "history": history
-             },
+            },
         ]
     }
     results = requests.post(url, json=request_data).text
-    assert all(results), f"Got empty string among results"
+    assert all(results), "Got empty string among results"
