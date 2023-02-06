@@ -24,11 +24,12 @@ def respond(payload: dict = Body(...)):
     if batch:
         user_inputs = {
             "history": history["history"].split("\n") if history["history"] else [""],
-            "inputs": [{
-                "checked_sentence": sample["checked_sentence"],
-                "knowledge": sample["knowledge"],
-                "text": sample["text"],
-            }
+            "inputs": [
+                {
+                    "checked_sentence": sample["checked_sentence"],
+                    "knowledge": sample["knowledge"],
+                    "text": sample["text"],
+                }
                 for sample in batch
             ]
         }
