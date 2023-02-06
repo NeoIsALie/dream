@@ -1,36 +1,31 @@
 import random
 import time
-from typing import List, Optional
+from typing import Optional, List
 
 import sentry_sdk
 from fastapi import Body, FastAPI
-from pydantic import BaseModel
 
 from config import *
+from schemas import *
 
 app = FastAPI()
 
 
-class Answer(BaseModel):
-    text: str
-
-
 @app.post('/respond', response_model=Optional[List[Answer]])
-def respond(payload: dict = Body(...)):
-    batch, history = payload['batch'], payload["batch"][0]
+def respond(payload: Question) -> Optional[List[Answer]]:
     responses = None
     random.seed(42)
     st_time = time.time()
-    if batch:
+    if payload.batch:
         user_inputs = {
-            "history": history["history"].split("\n") if history["history"] else [""],
+            "history": payload.batch[0].get('history').split("\n") if payload.batch else [""],
             "inputs": [
                 {
                     "checked_sentence": sample["checked_sentence"],
                     "knowledge": sample["knowledge"],
                     "text": sample["text"],
                 }
-                for sample in batch
+                for sample in payload.batch
             ]
         }
         try:
