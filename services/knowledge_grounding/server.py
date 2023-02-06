@@ -11,7 +11,7 @@ from schemas import *
 app = FastAPI()
 
 
-@app.post('/respond', response_model=Optional[List[Answer]])
+@app.post("/respond", response_model=Optional[List[Answer]])
 def respond(payload: Question) -> Optional[List[Answer]]:
     responses = None
     random.seed(42)

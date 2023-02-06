@@ -22,8 +22,8 @@ import requests
             "Penguins are a group of aquatic flightless birds.",
             "Who are penguins?",
             True,
-        )
-    ]
+        ),
+    ],
 )
 def test_knowledge_grounding(url: str, checked_sentence, knowledge, text, expected):
     history = (
